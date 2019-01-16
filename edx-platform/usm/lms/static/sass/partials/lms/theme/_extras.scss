@@ -1,0 +1,42 @@
+
+///// Home
+
+.content-wrapper.main-container {
+	padding: 0;
+	margin-top: 0;
+}
+
+.home {
+	.banner-home {
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 40vh;
+	}
+
+	.outer-wrapper {
+		float: right;
+		width: 50%;
+	} 
+} 
+
+//// Footer
+
+.wrapper-footer.wrapper {
+
+	background: #eee;
+	padding: 30px;
+
+	.wrapper-logo img {
+		max-width: 100px;
+	}
+
+	footer#footer-openedx .footer-about-openedx {
+		display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+	}
+
+	.nav-legal {
+		display: none;
+	}
+}
