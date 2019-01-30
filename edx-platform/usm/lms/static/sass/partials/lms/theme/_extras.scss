@@ -13,12 +13,12 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 40vh;
-	}
+  }
 
   .outer-wrapper {
     float: right;
     width: 50%;
-	}
+  }
 }
 
 //-----------------
@@ -64,29 +64,29 @@
 
   .wrapper-logo img {
     max-width: 100px;
-	}
+  }
 
   footer#footer-openedx .footer-about-openedx {
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
-	}
+    padding-top: 55px;
+  }
 
   .nav-legal {
     display: none;
-	}
+  }
 
   footer#footer-openedx .colophon {
     display: flex;
     flex-direction: column;
-	}
+  }
 
   .colophon .nav-colophon {
     margin: 5px 0 30px;
 
     ol {
       list-style: none;
-		}
+    }
 
     li {
       float: left;
@@ -94,21 +94,39 @@
 
       a {
         color: #333;
-			}
-		}
-	}
+      }
+    }
+  }
 
   footer#footer-openedx {
     display: flex;
     justify-content: space-between;
-	}
+
+    .social-links {
+      display: flex;
+
+      a {
+        padding: 10px;
+        background: #ccc;
+        border-radius: 50%;
+        color: #333;
+        margin: 0 2px;
+
+        &:hover,
+        &:active {
+          border: 0;
+          color: #fff;
+        }
+      }
+    }
+  }
 
   .copyright {
     color: #767676;
     font-size: .6875em;
     margin: -2px 0 8px;
     text-align: left;
-	}
+  }
 }
 
 //-----------------
@@ -127,13 +145,13 @@
       box-shadow: none;
       max-width: 1180px;
       padding-top: 20px;
-		}
-	}
+    }
+  }
 
   .container {
     padding-left: 20px;
     padding-right: 20px;
-	}
+  }
 }
 
 //-----------------
@@ -152,8 +170,8 @@
       li {
         border-left-style: solid;
         border-right-style: solid;
-			}
-		}
+      }
+    }
 
     .sequence-list-wrapper,
     .sequence-nav-button.button-next,
@@ -162,25 +180,25 @@
       max-width: 100%;
       min-height: 44px;
       z-index: 2000;
-		}
+    }
 
     .sequence-nav-button.button-next,
     .sequence-nav-button.button-previous {
       margin: .75rem 0;
-		}
-	}
+    }
+  }
 
   .content-wrapper .course-info {
     .course-sidebar {
       width: 100%;
-		}
+    }
 
     header.course-profile .intro-inner-wrapper {
       .table {
         align-items: center;
         display: flex;
         flex-direction: column-reverse;
-			}
+      }
 
       .intro {
         text-align: center;
@@ -188,8 +206,8 @@
 
         .register {
           margin: 0 auto;
-				}
-			}
+        }
+      }
 
       .media {
         width: auto;
@@ -197,10 +215,10 @@
         img {
           height: 160px;
           max-width: 264px;
-				}
-			}
-		}
-	}
+        }
+      }
+    }
+  }
 
   //Dashboard
   .dashboard .main-container .my-courses .course .details .wrapper-course-image {
@@ -209,11 +227,11 @@
 
     .cover {
       max-width: 184px;
-  	}
+    }
 
     img {
       height: 120px;
-  	}
+    }
   }
 
 	//Footer
@@ -224,26 +242,27 @@
     .colophon {
       align-items: center;
       width: 100%;
-		}
+    }
 
     .copyright {
       text-align: center;
-		}
+    }
 
     .footer-about-openedx {
       align-items: center;
-		}
-	}
+      padding-top: 30px;
+    }
+  }
 }
 
 @media only screen and (max-width: 576px) {
   .header-logo  {
     .logo {
       display: none;
-		}
+    }
 
     .logo-mobile {
       display: block;
-		}
-	}
+    }
+  }
 }
