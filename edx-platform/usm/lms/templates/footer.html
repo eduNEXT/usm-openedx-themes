@@ -5,61 +5,16 @@
   from django.utils.translation import ugettext as _
   from branding.api import get_footer
   from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+  from django.conf import settings
+
+  facebook_org_link = settings.PLATFORM_FACEBOOK_ACCOUNT
+  twitter_org_link = settings.PLATFORM_TWITTER_ACCOUNT
 %>
 <% footer = get_footer(is_secure=is_secure) %>
 <%namespace name='static' file='static_content.html'/>
 
-% if uses_bootstrap:
-  <div class="container-fluid wrapper-footer">
-    <footer>
-      <div class="row">
-        <div class="col-md-9">
-          <nav class="navbar site-nav navbar-expand-sm" aria-label="${_('About')}">
-            <ul class="navbar-nav">
-              % for item_num, link in enumerate(footer['navigation_links'], start=1):
-                <li class="nav-item">
-                  <a class="nav-link" href="${link['url']}">${link['title']}</a>
-                </li>
-              % endfor
-            </ul>
-          </nav>
 
-          ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-          <p class="copyright">${footer['copyright']} ${u" | {icp}".format(icp=getattr(settings,'ICP_LICENSE')) if getattr(settings,'ICP_LICENSE',False) else ""}</p>
-
-          <nav class="navbar legal-nav navbar-expand-sm" aria-label="${_('Legal')}">
-            <ul class="navbar-nav">
-              % for item_num, link in enumerate(footer['legal_links'], start=1):
-                <li class="nav-item">
-                  <a class="nav-link" href="${link['url']}">${link['title']}</a>
-                </li>
-              % endfor
-              <li class="nav-item">
-                <a class="nav-link" href="${footer['edx_org_link']['url']}">${footer['edx_org_link']['text']}</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="col-md-3">
-          ## Please leave this link and use one of the logos provided
-          ## The OpenEdX link may be hidden when this view is served
-          ## through an API to partner sites (such as marketing sites or blogs),
-          ## which are not technically powered by Open edX.
-          % if not hide_openedx_link:
-            <div class="footer-about-openedx">
-              <p>
-                <a href="${footer['openedx_link']['url']}">
-                  <img src="${footer['openedx_link']['image']}" alt="${footer['openedx_link']['title']}" width="140" />
-                </a>
-              </p>
-            </div>
-          % endif
-        </div>
-      </div>
-    </footer>
-  </div>
-% else:
-  <div class="wrapper wrapper-footer">
+<div class="wrapper wrapper-footer">
     <footer id="footer-openedx" class="grid-container"
       ## When rendering the footer through the branding API,
       ## the direction may not be set on the parent element,
@@ -71,17 +26,40 @@
       <div class="colophon">
         <nav class="nav-colophon" aria-label="${_('About')}">
           <ol>
-              % for item_num, link in enumerate(footer['navigation_links'], start=1):
-              <li class="nav-colophon-0${item_num}">
-                <a id="${link['name']}" href="${link['url']}">${link['title']}</a>
+              <li class="nav-colophon-01">
+                <a id="about" href="/about">${_('About')}</a>
               </li>
-              % endfor
+              <li class="nav-colophon-02">
+                <a id="contact" href="/contact">${_('Contact')}</a>
+              </li>
           </ol>
         </nav>
 
         % if context.get('include_language_selector', footer_language_selector_is_enabled()):
             <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
         % endif
+
+        <div class="social-links">
+          <a href="${twitter_org_link}" target="_blank">
+            <span class="icon fa fa-twitter" aria-hidden="true"></span>
+          </a>
+          <a href="${facebook_org_link}" target="_blank">
+            <span class="icon fa fa-facebook" aria-hidden="true"></span>
+          </a>
+          <a href="http://www.youtube.com/channel/UCr5rEvayXIC0YnJxDAWuWtQ" target="_blank">
+            <span class="icon fa fa-youtube" aria-hidden="true"></span>
+          </a>
+          <a href="https://vimeo.com/usantamaria" target="_blank">
+            <span class="icon fa fa-vimeo" aria-hidden="true"></span>
+          </a>
+          <a href="http://www.flickr.com/photos/utfsm/sets/" target="_blank">
+            <span class="icon fa fa-flickr" aria-hidden="true"></span>
+          </a>
+          <a href="https://instagram.com/usantamaria/" target="_blank">
+            <span class="icon fa fa-instagram" aria-hidden="true"></span>
+          </a>
+        </div>
+
 
         <div class="wrapper-logo">
           <p>
@@ -93,13 +71,14 @@
               ## can be included in the footer on other sites
               ## (e.g. a blog or marketing front-end) to provide a consistent
               ## user experience.  See the branding app for details.
-              <img alt="organization logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Logo_UTFSM.png/250px-Logo_UTFSM.png">
+              <img alt="organization logo" src="${static.url('images/logo-footer.png')}">
             </a>
           </p>
         </div>
 
         ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
         <p class="copyright">© Universidad Técnica Federico Santa María </p>
+        <p class="copyright">Avenida España 1680, Valparaíso · +56 32 2654000 · dgc@usm.cl</p>
 
         <nav class="nav-legal" aria-label="${_('Legal')}">
           <ul>
@@ -112,7 +91,6 @@
           </ul>
         </nav>
       </div>
-
       ## Please leave this link and use one of the logos provided
       ## The OpenEdX link may be hidden when this view is served
       ## through an API to partner sites (such as marketing sites or blogs),
@@ -132,8 +110,8 @@
       </div>
       % endif
     </footer>
-  </div>
-% endif
+</div>
+
 % if include_dependencies:
   <%static:js group='base_vendor'/>
   <%static:css group='style-vendor'/>
